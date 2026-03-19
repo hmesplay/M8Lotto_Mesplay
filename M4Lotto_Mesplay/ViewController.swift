@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var numLabel6: UILabel!
     @IBOutlet weak var numLabel7: UILabel!
     
+    @IBOutlet var labels: [UILabel]!
+    
     func getColor(from number: Int?) -> (backgroundColor: UIColor, textColor: UIColor){
         guard let number else{
             return (UIColor.purple, UIColor.purple)
@@ -34,6 +36,23 @@ class ViewController: UIViewController {
             return (UIColor.green, UIColor.black)
         default:
             return (UIColor.purple, UIColor.purple)
+        }
+    
+    }
+    override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
+        coordinator.animate { _ in
+            for label in self.labels{
+                self.numLabel1.layer.cornerRadius = self.numLabel1.bounds.width / 2
+            }
+        }
+    }
+    override func viewDidAppear( _ animated: Bool) {
+        var nums = [Int]()
+        while nums.count < labels.count {
+            let rnd = Int.random(in: 1...45)
+            if !nums.contains(rnd) {
+                nums.append(rnd)
+            }
         }
     }
     override func viewDidLoad() {
