@@ -46,12 +46,15 @@ class ViewController: UIViewController {
             }
         }
     }
+    //never got to see how we finished the function, moved onto next program instantly
     override func viewDidAppear( _ animated: Bool) {
-        var nums = [Int]()
-        while nums.count < labels.count {
-            let rnd = Int.random(in: 1...45)
-            if !nums.contains(rnd) {
-                nums.append(rnd)
+        let nums = Int.uniqueRandomNumber(in: 1 ... 45, count: 7)
+        
+        for(index, label) in labels.enumerated(){
+            if label == label.last{
+                label.setLottoNumber(nums[index], with: .purple, textColor: .white)
+            }else{
+                
             }
         }
     }
@@ -103,4 +106,19 @@ class ViewController: UIViewController {
         }
     }
 }
-
+/*
+ extension Int{
+ func uniqueRandomNumber(in range: ClosedRange<Int>, count: Int) -> [Int] {
+ var nums = [Int]()
+ 
+ while nums.count < count {
+ let randomNum = Int.random(in: 1...45)
+ if !nums.contains(randomNum) {
+ nums.append(randomNum)
+ }
+ }
+ nums.sort()
+ return nums
+ }
+ }
+ */
